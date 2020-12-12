@@ -28,7 +28,7 @@ void limpatela()
 void pausa()
 {
     #ifdef OS_WINDOWS
-        system("Sleep(0.5*1000");
+        system("timeout 1");
 
     #else
         system("sleep 0.5");
@@ -36,7 +36,6 @@ void pausa()
     #endif
 
 }
-
 
 void Menu()
 {
@@ -253,26 +252,6 @@ void CicloVidaCelula(int *Matriz, int *CopiaMatriz, int posicao)
 
 }
 
-void simulacaoDoJogo(int *Matriz, int *CopiaMatriz, int linhas, int colunas, int geracoes)
-{
-    for(int n = 0; n < geracoes; n++)
-    {
-        limpatela();
-
-        CopiandoMatriz(Matriz, CopiaMatriz, linhas * colunas);
-        
-        for(int i = 0; i < linhas * colunas; i++)
-        {
-            CicloVidaCelula(Matriz, CopiaMatriz, i);
-        }
-
-        imprimeMatriz(Matriz, linhas, colunas);
-        pausa();
-        
-
-    }
-}
-
 void CopiandoMatriz(int *MatrizOrig, int *CopiaMatriz, int tam)
 {
     for(int i = 0; i < tam; i++)
@@ -296,5 +275,22 @@ void imprimeMatriz(int *Matriz, int linhas, int colunas)
     }
 }
 
+void simulacaoDoJogo(int *Matriz, int *CopiaMatriz, int linhas, int colunas, int geracoes)
+{
+    for(int n = 0; n < geracoes; n++)
+    {
+        limpatela();
 
+        CopiandoMatriz(Matriz, CopiaMatriz, linhas * colunas);
+        
+        for(int i = 0; i < linhas * colunas; i++)
+        {
+            CicloVidaCelula(Matriz, CopiaMatriz, i);
+        }
+
+        imprimeMatriz(Matriz, linhas, colunas);
+        pausa();
+        
+    }
+}
 
